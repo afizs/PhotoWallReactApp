@@ -10,11 +10,14 @@ const items = [
   "Final Item"
 ];
 const App = (
-  <ol>
-    {items.map(item => (
-      <li>{item} </li>
-    ))}
-  </ol>
+  <div>
+    <h1>Task List: </h1>
+    <ol>
+      {items.map((item, index) => (
+        <li key={index}>{item} </li>
+      ))}
+    </ol>
+  </div>
 );
 
 const rootElement = document.getElementById("root");
