@@ -2,15 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
-
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
+const items = [
+  "This is first item",
+  "Second Item",
+  "Third Item",
+  "Another item",
+  "Final Item"
+];
+const App = (
+  <ol>
+    {items.map(item => (
+      <li>{item} </li>
+    ))}
+  </ol>
+);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(App, rootElement);
