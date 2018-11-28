@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
@@ -9,16 +9,36 @@ const items = [
   "Another item",
   "Final Item"
 ];
-const App = (
-  <div>
-    <h1>Task List: </h1>
-    <ol>
-      {items.map((item, index) => (
-        <li key={index}>{item} </li>
-      ))}
-    </ol>
-  </div>
-);
+
+class List extends Component {
+  render() {
+    return (
+      <ol>
+        {this.props.tasks.map((item, index) => (
+          <li key={index}>{item} </li>
+        ))}
+      </ol>
+    );
+  }
+}
+
+class Title extends Component {
+  render() {
+    return <h1>{this.props.title}</h1>;
+  }
+}
+
+class Main extends Component {
+  render() {
+    return (
+      <div>
+        <Title title="toDos: " />
+        <List tasks={items} />
+        <List tasks={items} />
+      </div>
+    );
+  }
+}
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(App, rootElement);
+ReactDOM.render(<Main />, rootElement);
