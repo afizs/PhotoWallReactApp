@@ -6,7 +6,11 @@ class PhotoWall extends Component {
     return (
       <div className="photogrid">
         {this.props.posts.map((post, index) => (
-          <Photo key={index} post={post} />
+          <Photo
+            key={index}
+            post={post}
+            onRemovePhoto={this.props.onRemovePhoto}
+          />
         ))}
       </div>
     );
