@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Photo from "./Photo";
 
 class PhotoWall extends Component {
@@ -16,4 +17,9 @@ class PhotoWall extends Component {
     );
   }
 }
+
+PhotoWall.propTypes = {
+  posts: PropTypes.array.isRequired,
+  onRemovePhoto: PropTypes.func.isRequired
+};
 export default PhotoWall;
