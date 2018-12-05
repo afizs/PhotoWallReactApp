@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import Title from "./Title";
 import PhotoWall from "./PhotoWall";
+import AddPhoto from "./AddPhoto";
 
 class Main extends Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      screen: "photo" // post or addphoto
     };
     this.removePhoto = this.removePhoto.bind(this);
-    console.log("constructor!");
+    this.navigatePage = this.navigatePage.bind(this);
   }
 
   removePhoto(photoRemoved) {
@@ -29,12 +31,26 @@ class Main extends Component {
     console.log("component did update!!");
   }
 
+  navigatePage() {
+    console.log("navigate!");
+    this.setState({
+      screen: "addphoto"
+    });
+  }
+
   render() {
     console.log("render!");
     return (
       <div>
         <Title />
-        <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} />
+        {this.state.screen === "photo" && (
+          <PhotoWall
+            posts={this.state.posts}
+            onRemovePhoto={this.removePhoto}
+            onAddPhoto={this.navigatePage}
+          />
+        )}
+        {this.state.screen === "addphoto" && <AddPhoto />}
       </div>
     );
   }
