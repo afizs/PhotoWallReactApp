@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import Title from "./Title";
 import PhotoWall from "./PhotoWall";
 import AddPhoto from "./AddPhoto";
@@ -32,7 +33,7 @@ class Main extends Component {
   }
 
   navigatePage() {
-    console.log("navigate!");
+    console.log("render!");
     this.setState({
       screen: "addphoto"
     });
@@ -42,15 +43,22 @@ class Main extends Component {
     console.log("render!");
     return (
       <div>
-        <Title />
-        {this.state.screen === "photo" && (
-          <PhotoWall
-            posts={this.state.posts}
-            onRemovePhoto={this.removePhoto}
-            onAddPhoto={this.navigatePage}
-          />
-        )}
-        {this.state.screen === "addphoto" && <AddPhoto />}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div>
+              <Title />
+              <PhotoWall
+                posts={this.state.posts}
+                onRemovePhoto={this.removePhoto}
+                onAddPhoto={this.navigatePage}
+              />
+            </div>
+          )}
+        />
+
+        <Route path="/AddPhoto" component={AddPhoto} />
       </div>
     );
   }

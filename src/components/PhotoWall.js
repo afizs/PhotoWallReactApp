@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Photo from "./Photo";
+import { Link } from "react-router-dom";
 
 class PhotoWall extends Component {
   render() {
     return (
       <div>
         <div className="button-container">
-          <a onClick={this.props.onAddPhoto} href="#AddPhoto">
-            ClickMe
-          </a>
+          <Link to="/AddPhoto">ClickMe</Link>
         </div>
         <br />
         <div className="photogrid">
