@@ -8,11 +8,10 @@ class Main extends Component {
   constructor() {
     super();
     this.state = {
-      posts: [],
-      screen: "photo" // post or addphoto
+      posts: []
     };
     this.removePhoto = this.removePhoto.bind(this);
-    this.navigatePage = this.navigatePage.bind(this);
+    this.addPhotoHandle = this.addPhotoHandle.bind(this);
   }
 
   removePhoto(photoRemoved) {
@@ -20,6 +19,13 @@ class Main extends Component {
     this.setState(state => ({
       posts: state.posts.filter(post => post !== photoRemoved)
     }));
+  }
+
+  addPhotoHandle(photoSubmitted) {
+    this.setState(state => ({
+      posts: state.posts.concat([photoSubmitted])
+    }));
+    console.log(this.state.posts);
   }
 
   componentDidMount() {
@@ -30,13 +36,6 @@ class Main extends Component {
   }
   componentDidUpdate() {
     console.log("component did update!!");
-  }
-
-  navigatePage() {
-    console.log("render!");
-    this.setState({
-      screen: "addphoto"
-    });
   }
 
   render() {
@@ -58,7 +57,17 @@ class Main extends Component {
           )}
         />
 
-        <Route path="/AddPhoto" component={AddPhoto} />
+        <Route
+          path="/AddPhoto"
+          render={({ history }) => (
+            <AddPhoto
+              onAddPhoto={addedPost => {
+                this.addPhotoHandle(addedPost);
+                history.push("/");
+              }}
+            />
+          )}
+        />
       </div>
     );
   }
