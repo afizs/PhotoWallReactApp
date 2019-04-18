@@ -4,7 +4,7 @@ class Title extends Component {
   render() {
     return (
       <div>
-        <h1>IBM InstaScan</h1>
+        <h1>PhotoWall</h1>
       </div>
     );
   }
